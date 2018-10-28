@@ -5,7 +5,7 @@ Philip2 ("*fee-leap* the second") is a compiler from Elm OCaml, using the Reason
 ## Build philip2
 
 ```
-opam install dune core ocaml-migrate-parsetree ppx_deriving ppx_deriving_yojson re2 reason yojson ocamlformat`
+opam install dune core ocaml-migrate-parsetree ppx_deriving ppx_deriving_yojson re2 reason yojson ocamlformat
 dune build translate.exe
 ```
 
