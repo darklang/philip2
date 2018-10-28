@@ -4,4 +4,4 @@ set -euo pipefail
 
 ./build
 
-cat /dev/stdin | ./_build/default/translate.exe --debug
+cat /dev/stdin | ./_build/default/src/philip2.exe --debug

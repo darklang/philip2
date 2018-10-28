@@ -2,5 +2,5 @@
 
 set -euo pipefail
 
-dune build src/philip2.exe
-
+./build
+dune runtest

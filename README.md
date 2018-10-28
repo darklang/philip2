@@ -4,23 +4,14 @@ Philip2 ("*fee-leap* the second") is a compiler from Elm OCaml, using the Reason
 
 ## Build philip2
 
-```
-opam install dune core ocaml-migrate-parsetree ppx_deriving ppx_deriving_yojson re2 reason yojson ocamlformat
-dune build translate.exe
-```
-
-## Build elm-format
-
-philip2 requires a modified version of elm-format. You can install it using:
+Philip2 requires some OCaml libraries, and also a modified elm-format. Tweak install-dependencies to make it work for you.
 
 ```
-curl -sSL https://get.haskellstack.org/ | sh
-stack setup --resolver lts-11.4
-git clone https://github.com/darklang/elm-format
-cd elm-format && git checkout elm-escape && stack install -j 4
+./install-dependencies
+./build
+./test
+./translate MyFile.elm > MyFile.ml
 ```
-
-- TODO: put above in a script and affix version numbers
 
 # Useful scripts in the repo
 

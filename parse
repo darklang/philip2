@@ -5,5 +5,5 @@ set -euo pipefail
 ./build
 
 ~/.local/bin/elm-format --json --elm-version 0.18 --stdin < /dev/stdin \
-  | ./_build/default/translate.exe --parse
+  | ./_build/default/src/philip2.exe --parse
 

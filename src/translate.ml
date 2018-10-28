@@ -1,6 +1,7 @@
 open Core_kernel
 
 module OldStr = Str
+
 open Elm
 open Migrate_parsetree.Ast_404
 open Ast_helper
@@ -949,80 +950,33 @@ let to_ocaml (m: Elm.module_) : (Parsetree.structure * Reason_comment.t list) =
   let file = moduleO m in
   (file, [])
 
-(* ------------------------ *)
-(* main *)
-(* ------------------------ *)
-let _ =
-  let mainExit () =
-    let count = List.length !todosRemaining in
-    if count > 0
-    then
-      (prerr_endline ("\n\n\n\n\n" ^ (string_of_int count) ^ " todos remain");
-       List.iter ~f:prerr_endline !todosRemaining;
-      exit (-1))
-    else
-      exit 0
+let debug_ocaml channel : string =
+  let migration =
+    let module Versions = Migrate_parsetree_versions in
+    Versions.migrate Versions.ocaml_404 Versions.ocaml_current
   in
-  if Array.length Sys.argv > 1 && Sys.argv.(1) = "--parse"
-  then
+  Lexing.from_channel channel
+  |> Reason_toolchain.ML.implementation
+  |> migration.copy_structure
+  |> Printast.structure 0 Format.str_formatter;
+  Format.flush_str_formatter ()
 
-    try
-      In_channel.stdin
-      |> Yojson.Basic.from_channel
-      |> Elm.moduleJ
-      |> Elm.show_module_
-      |> OldStr.global_replace (OldStr.regexp "Translate\\.") ""
-      |> print_endline;
-      mainExit ()
+let translate_elm channel : string =
+  channel
+  |> Yojson.Basic.from_channel
+  |> Elm.moduleJ
+  |> to_ocaml
+  |> Reason_toolchain.ML.print_implementation_with_comments
+    Format.str_formatter;
+  Format.flush_str_formatter ()
+  |> post_process
 
-    with (Elm.E (msg, json)) ->
-      Printexc.print_backtrace stderr;
-      print_endline (Yojson.Basic.pretty_to_string json);
-      prerr_endline msg;
-      exit (-1)
-  else
-  if Array.length Sys.argv > 1 && Sys.argv.(1) = "--debug"
-  then
+let parse_elm channel : string =
+  channel
+  |> Yojson.Basic.from_channel
+  |> Elm.moduleJ
+  |> Elm.show_module_
+  |> OldStr.global_replace (OldStr.regexp "Translate\\.") ""
 
-    let migration =
-      let module Versions = Migrate_parsetree_versions in
-      Versions.migrate Versions.ocaml_404 Versions.ocaml_current
-    in
-    Lexing.from_channel In_channel.stdin
-    |> Reason_toolchain.ML.implementation
-    |> migration.copy_structure
-    |> Printast.structure 0
-      Format.str_formatter;
-      Format.flush_str_formatter ()
-      |> print_endline;
-    mainExit ()
-
-  else
-
-    try
-      let m =
-        In_channel.stdin
-        |> Yojson.Basic.from_channel
-        |> Elm.moduleJ
-      in
-      m
-      |> to_ocaml
-      |> Reason_toolchain.ML.print_implementation_with_comments
-        Format.str_formatter;
-      Format.flush_str_formatter ()
-      |> post_process
-      |> print_endline;
-      mainExit ()
-
-    with
-    | (Elm.E (msg, json)) ->
-      Printexc.print_backtrace stderr;
-      print_endline (Yojson.Basic.pretty_to_string json);
-      prerr_endline msg;
-      exit (-1)
-    | e ->
-      Printexc.print_backtrace stderr;
-      prerr_endline (Exn.to_string e);
-      exit (-1)
 
 
