@@ -86,14 +86,15 @@ These allow you to use regex to modify module, function, and type names, as well
 
 # Contributing
 
-This is extremely alpha quality. Contributions are welcome to improve this and make it more automated and less semi-automated. In order of priority:
+This project has a code of conduct - please read and abide by it.
 
-- add license
-- add CoC (standard one. Please assume it until I actually add the file)
+Philip2 is extremely alpha quality. Contributions are welcome to improve this and make it more automated and less semi-automated. In order of priority:
+
 - add tests (read directory of elm files, check that they are identical to the ocaml file of the same name)
 - add CI
 - fix bugs
 - PRs welcome.
+
 
 # Known bugs
 
@@ -132,3 +133,6 @@ else g
 - We should add an ability to target "flavors": whether the generated code uses functions and modules from Bucklescript functions, OCaml pervasives, Jane Street Base, or ported Elm libraries.
 
 
+# License
+
+Files in the toplevel directory use the [MIT](https://github.com/darklang/philip2/blob/master/LICENSE) license. Elm.ml is somewhat based on avh4/elm-format, which has a [BSD](https://github.com/avh4/elm-format/blob/master/LICENSE). Some functions in [useful_ocaml/Porting.ml](https://github.com/darklang/philip2/blob/master/useful_ocaml/Porting.ml) are based on elm/core ([BSD](https://github.com/elm/core/blob/1.0.0/LICENSE)), and from the \*.Extra packages in elm-community, which use a [BSD](https://github.com/elm-community/string-extra/blob/master/LICENSE) license). Others may derive from elsewhere and have unclear providence.
