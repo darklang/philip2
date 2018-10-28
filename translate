@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
-. ./scripts/support/assert-in-container $0 $@
 
 set -euo pipefail
 
-./translate/build
+./build
 
 ~/.local/bin/elm-format --json --elm-version 0.18 --stdin < $1 \
-  | ./translate/_build/default/translate.exe > out 2> stderr \
+  | ./_build/default/translate.exe > out 2> stderr \
   && ocamlformat --inplace out
 
 code=$?
