@@ -1,4 +1,4 @@
-Philip2 ("*fee-leap* the second") is a compiler from Elm to OCaml, using the ReasonML/Bucklescript ecosystem. You can use it to do a semi-automated port of a codebase from Elm 0.18 to Bucklescript.
+Philip2 ("*fee-leap* the second") is a compiler from Elm to OCaml, using the ReasonML/Bucklescript ecosystem. You can use it to do a semi-automated port of a codebase from Elm to Bucklescript/ReasonML.
 
 # Installing
 
