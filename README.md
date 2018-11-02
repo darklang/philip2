@@ -4,18 +4,36 @@ Philip2 ("*fee-leap* the second") is a compiler from Elm to OCaml, using the Rea
 
 ## Build philip2
 
-Philip2 requires some OCaml libraries, and also a modified elm-format. Tweak install-dependencies to make it work for you.
+To make the OCaml dependencies management easier, philip2 uses `esy`. You can install
+the latest beta using [npm][https://nodejs.org/en/download/]:
+
+    % npm install -g esy@latest
+
+Then you can install the project dependencies using:
+
+    % esy install
+
+Then build the project dependencies along with the project itself:
+
+    % esy build
+
+And test compiled executable:
+
+    % esy ./_build/default/bin/translate.exe
+
+## Build elm-format
+
+philip2 requires a modified version of elm-format. You can install it using:
 
 ```
 ./install-dependencies
-./build
+esy install
+esy build
 ./test
 ./translate MyFile.elm > MyFile.ml
 ```
 
 # Useful scripts in the repo
-
-- build: builds the compiler
 
 - debug: run and then type ocaml code to get pretty-printed ocaml AST. This is useful for figuring out how to generate the code you're trying to create an AST for. (run ./debug, then type your code, then press Ctrl-D)
 

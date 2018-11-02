@@ -2,8 +2,6 @@
 
 set -euo pipefail
 
-opam install dune core_extended ocaml-migrate-parsetree ppx_deriving ppx_deriving_yojson re2 reason yojson ocamlformat alcotest junit junit_alcotest
-
 curl -sSL https://get.haskellstack.org/ | sh
 stack setup --resolver lts-11.4
 git clone https://github.com/darklang/elm-format

@@ -6,3 +6,4 @@ _build
 /result.xml
 /src/.merlin
 /stderr
+node_modules
