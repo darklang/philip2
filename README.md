@@ -19,7 +19,7 @@ Then build the project dependencies along with the project itself:
 
 And test compiled executable:
 
-    % esy ./_build/default/bin/translate.exe
+    % esy ./_build/default/src/philip2.exe
 
 ## Build elm-format
 
