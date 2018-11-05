@@ -3,11 +3,45 @@ jobs:
   build:
     docker:
       - image: debian:stretch
+    environment:
+      - TERM: dumb
+      - NPM_CONFIG_PREFIX: "~/.npm-global"
     steps:
       - checkout
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: "Install npm"
+          command: |
+            curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+            mkdir -p ~/.npm-global
+            npm config set prefix $NPM_CONFIG_PREFIX
+      - restore_cache:
+          <<: *esy_cache_key
+      - restore_cache:
+          <<: *esy_post_build_cache_key
       - run:
-          name: Print the Current Time
-          command: date
+          name: "Install esy"
+          command: npm install -g esy@latest
+      - run:
+          name: 'esy install'
+          command: ~/.npm-global/bin/esy install
+      - save_cache:
+          <<: *esy_cache_key
+          paths:
+            - ~/.npm-global
+            - ~/.esy
+      - run:
+          name: 'esy build'
+          command: |
+            ~/.npm-global/bin/esy build
+      # Use both pre and post build caches so that we're more likely
+      # to have dependencies cached. `esy build` is more likely to fail,
+      # so this will make the push that fixes the build faster
+      - save_cache:
+          <<: *esy_post_build_cache_key
+          paths:
+            - ~/.esy
+      - run:
+        name: 'Test'
+        command: |
+          esy test

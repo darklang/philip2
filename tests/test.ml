@@ -15,9 +15,9 @@ let readfile f : string =
 
 let test filename =
   let fn _ =
-    let ocaml = readfile ("tests/" ^ filename ^ ".ml") in
+    let ocaml = readfile (filename ^ ".ml.out") in
     let output =
-      Core_extended.Shell.run_full "./translate" ["tests/" ^ filename ^ ".elm"]
+      Core_extended.Shell.run_full "../src/philip2.exe" ["../tests/" ^ filename ^ ".elm"]
     in
 
     AT.check

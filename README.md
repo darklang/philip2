@@ -19,17 +19,17 @@ Then build the project dependencies along with the project itself:
 
 And test compiled executable:
 
-    % esy ./_build/default/src/philip2.exe
+    % esy test
 
-## Build elm-format
+## Quickstart
 
-philip2 requires a modified version of elm-format. You can install it using:
+To start translating your files:
 
 ```
-./install-dependencies
+./install-elm-format # philip2 requires a modified version of elm-format.
 esy install
 esy build
-./test
+esy test
 ./translate MyFile.elm > MyFile.ml
 ```
 

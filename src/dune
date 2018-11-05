@@ -29,24 +29,6 @@
   (modules translate)
 )
 
-(alias
- (name   runtest)
- (action (bash "cd ../../../ && _build/default/src/test.exe"))
- (deps test.exe))
-
-(executable
-  (name test)
-  (flags (-warn-error +A))
-  (libraries core_extended
-             alcotest
-             junit
-             junit_alcotest
-             translate
-             )
-  (preprocess (pps ppx_deriving.std ))
-  (modules test)
-)
-
 (executable
   (name philip2)
   (flags (-warn-error +A))

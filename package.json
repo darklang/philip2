@@ -6,6 +6,9 @@
   "esy": {
     "build": "dune build src/philip2.exe"
   },
+  "scripts": {
+    "test": "esy dune runtest"
+  },
   "dependencies": {
     "@opam/dune": "^1.4.0",
     "@opam/core": "*",
@@ -19,6 +22,10 @@
     "ocaml": "~4.6.0"
   },
   "devDependencies": {
+    "@opam/alcotest": "^0.8.1",
+    "@opam/core_extended": "*",
+    "@opam/junit": "*",
+    "@opam/junit_alcotest": "*",
     "@opam/merlin": "^3.0.3",
     "ocaml": "~4.6.0"
   }
