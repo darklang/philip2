@@ -1,20 +1,19 @@
+esy_cache_key: &esy_cache_key
+  key: esy-cache-{{ checksum "package.json" }}-{{ checksum "esy.lock.json" }}-{{ checksum ".circleci/config.yml" }}
+
+esy_post_build_cache_key: &esy_post_build_cache_key
+  key: esy-post-build-cache-{{ checksum "package.json" }}-{{ checksum "esy.lock.json" }}-{{ checksum ".circleci/config.yml" }}
+
 version: 2
 jobs:
   build:
     docker:
-      - image: debian:stretch
+      - image: circleci/node:10
     environment:
       - TERM: dumb
       - NPM_CONFIG_PREFIX: "~/.npm-global"
     steps:
       - checkout
-      - run:
-          name: "Install npm"
-          command: |
-            curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
-            sudo apt-get install -y nodejs
-            mkdir -p ~/.npm-global
-            npm config set prefix $NPM_CONFIG_PREFIX
       - restore_cache:
           <<: *esy_cache_key
       - restore_cache:
@@ -42,6 +41,6 @@ jobs:
           paths:
             - ~/.esy
       - run:
-        name: 'Test'
-        command: |
-          esy test
+          name: 'Test'
+          command: |
+            esy test
