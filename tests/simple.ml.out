@@ -1,4 +1,3 @@
 open Tea
 open! Porting
-
-let x (v : int) : string = toString v
+let x (v : int) = (toString v : string)

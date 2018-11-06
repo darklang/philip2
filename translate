@@ -2,11 +2,11 @@
 
 set -euo pipefail
 
-./build
+esy build
 
 ~/.local/bin/elm-format --json --elm-version 0.18 --stdin < $1 \
-  | ./_build/default/src/philip2.exe > out 2> stderr \
-  && ocamlformat --inplace out
+  | _esy/default/build/default/src/philip2.exe > out 2> stderr \
+  && esy ocamlformat --inplace out
 
 code=$?
 cat out

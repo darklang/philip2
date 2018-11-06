@@ -2,6 +2,6 @@
 
 set -euo pipefail
 
-./build
+esy build
 
-cat /dev/stdin | ./_build/default/src/philip2.exe --debug
+cat /dev/stdin | _esy/default/build/default/src/philip2.exe --debug

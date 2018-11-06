@@ -17,7 +17,7 @@ let test filename =
   let fn _ =
     let ocaml = readfile (filename ^ ".ml.out") in
     let output =
-      Core_extended.Shell.run_full "../src/philip2.exe" ["../tests/" ^ filename ^ ".elm"]
+      Core_extended.Shell.run_full ("../src/philip2.exe") ["--file"; filename ^ ".elm.json"]
     in
 
     AT.check

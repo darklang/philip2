@@ -1,0 +1,157 @@
+{
+  "body": [
+    {
+      "tag": "Entry",
+      "contents": [
+        {
+          "start": { "line": 3, "column": 1 },
+          "end": { "line": 3, "column": 18 }
+        },
+        {
+          "tag": "TypeAnnotation",
+          "contents": [
+            [{ "tag": "VarRef", "contents": [[], "x"] }, []],
+            [
+              [],
+              [
+                {
+                  "start": { "line": 3, "column": 5 },
+                  "end": { "line": 3, "column": 18 }
+                },
+                {
+                  "tag": "FunctionType",
+                  "first": [
+                    [
+                      {
+                        "start": { "line": 3, "column": 5 },
+                        "end": { "line": 3, "column": 8 }
+                      },
+                      {
+                        "tag": "TypeConstruction",
+                        "contents": [
+                          { "tag": "NamedConstructor", "contents": ["Int"] },
+                          []
+                        ]
+                      }
+                    ],
+                    null
+                  ],
+                  "forceMultiline": false,
+                  "rest": [
+                    [
+                      [],
+                      [],
+                      [
+                        {
+                          "start": { "line": 3, "column": 12 },
+                          "end": { "line": 3, "column": 18 }
+                        },
+                        {
+                          "tag": "TypeConstruction",
+                          "contents": [
+                            {
+                              "tag": "NamedConstructor",
+                              "contents": ["String"]
+                            },
+                            []
+                          ]
+                        }
+                      ],
+                      null
+                    ]
+                  ]
+                }
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "Entry",
+      "contents": [
+        {
+          "start": { "line": 4, "column": 1 },
+          "end": { "line": 5, "column": 13 }
+        },
+        {
+          "tag": "Definition",
+          "contents": [
+            [
+              {
+                "start": { "line": 4, "column": 1 },
+                "end": { "line": 4, "column": 2 }
+              },
+              { "tag": "VarPattern", "contents": "x" }
+            ],
+            [
+              [
+                [],
+                [
+                  {
+                    "start": { "line": 4, "column": 3 },
+                    "end": { "line": 4, "column": 4 }
+                  },
+                  { "tag": "VarPattern", "contents": "v" }
+                ]
+              ]
+            ],
+            [],
+            [
+              {
+                "start": { "line": 5, "column": 3 },
+                "end": { "line": 5, "column": 13 }
+              },
+              {
+                "tag": "App",
+                "contents": [
+                  [
+                    {
+                      "start": { "line": 5, "column": 3 },
+                      "end": { "line": 5, "column": 11 }
+                    },
+                    {
+                      "tag": "VarExpr",
+                      "contents": {
+                        "tag": "VarRef",
+                        "contents": [[], "toString"]
+                      }
+                    }
+                  ],
+                  [
+                    [
+                      [],
+                      [
+                        {
+                          "start": { "line": 5, "column": 12 },
+                          "end": { "line": 5, "column": 13 }
+                        },
+                        {
+                          "tag": "VarExpr",
+                          "contents": { "tag": "VarRef", "contents": [[], "v"] }
+                        }
+                      ]
+                    ]
+                  ],
+                  { "tag": "FAJoinFirst", "contents": "JoinAll" }
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "initialComments": [],
+  "imports": [[], []],
+  "header": {
+    "name": [[], ["Test"], []],
+    "moduleSettings": null,
+    "exports": [[], [], { "tag": "OpenListing", "contents": [[], [], []] }],
+    "srcTag": { "tag": "Normal" }
+  },
+  "docs": [
+    { "start": { "line": 3, "column": 1 }, "end": { "line": 3, "column": 1 } },
+    null
+  ]
+}
