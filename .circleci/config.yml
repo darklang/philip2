@@ -43,4 +43,4 @@ jobs:
       - run:
           name: 'Test'
           command: |
-            esy test
+            ~/.npm-global/bin/esy test
