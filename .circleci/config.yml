@@ -19,6 +19,9 @@ jobs:
       - restore_cache:
           <<: *esy_post_build_cache_key
       - run:
+          name: "Install elm-format"
+          command: ./install-elm-format
+      - run:
           name: "Install esy"
           command: npm install -g esy@latest
       - run:
