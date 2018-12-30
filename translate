@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+env
+
 esy build
 
 ~/.local/bin/elm-format --json --elm-version 0.18 --stdin < $1 \
