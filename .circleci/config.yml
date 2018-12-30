@@ -1,8 +1,8 @@
 esy_cache_key: &esy_cache_key
-  key: esy-cache-{{ checksum "package.json" }}-{{ checksum "esy.lock.json" }}-{{ checksum ".circleci/config.yml" }}
+  key: esy-cache-{{ checksum "package.json" }}-{{ checksum "esy.lock.json" }}
 
 esy_post_build_cache_key: &esy_post_build_cache_key
-  key: esy-post-build-cache-{{ checksum "package.json" }}-{{ checksum "esy.lock.json" }}-{{ checksum ".circleci/config.yml" }}
+  key: esy-post-build-cache-{{ checksum "package.json" }}-{{ checksum "esy.lock.json" }}
 
 # No file because we haven't got a file to key off at the point of download
 elm_format_cache_key: &elm_format_cache_key
