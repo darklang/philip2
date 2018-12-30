@@ -16,6 +16,7 @@ jobs:
     environment:
       - TERM: dumb
       - NPM_CONFIG_PREFIX: "~/.npm-global"
+    run: echo 'export PATH=${NPM_CONFIG_PREFIX}/bin:$PATH"' >> ~/.bashrc
     steps:
       - checkout
       - restore_cache:
