@@ -2,11 +2,7 @@
 
 set -euo pipefail
 
-if [[ -d ~/.stack ]]; then
-  echo "Stack already installed, skipping";
-else
-  curl -sSL https://get.haskellstack.org/ | sh
-fi
+curl -sSL https://get.haskellstack.org/ | sh
 stack setup --resolver lts-11.4
 
 if [[ ! -d elm-format ]]; then

@@ -18,7 +18,8 @@ jobs:
       - NPM_CONFIG_PREFIX: "~/.npm-global"
     steps:
       - checkout
-      - run: echo 'export PATH=${NPM_CONFIG_PREFIX}/bin:$PATH"' >> ~/.bashrc
+      - run: echo 'export PATH=/home/circleci/.npm-global/bin:$PATH"' >> ~/.bashrc
+      - run: echo 'export PATH=/home/circleci/.local/bin:$PATH"' >> ~/.bashrc
       - restore_cache:
           <<: *esy_cache_key
       - restore_cache:
