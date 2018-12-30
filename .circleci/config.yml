@@ -16,46 +16,31 @@ jobs:
     environment:
       - TERM: dumb
       - NPM_CONFIG_PREFIX: "~/.npm-global"
+      - BASH_ENV: ~/.bashrc
     steps:
       - checkout
-      - run: echo 'export PATH=/home/circleci/.npm-global/bin:$PATH' >> ~/.bashrc
+      - run: echo 'export PATH=/home/circleci/.npm-global/bin:$PATH' > ~/.bashrc
       - run: echo 'export PATH=/home/circleci/.local/bin:$PATH' >> ~/.bashrc
       - restore_cache:
           <<: *esy_cache_key
       - restore_cache:
           <<: *esy_post_build_cache_key
-      - run:
-          name: "Install esy"
-          command: npm install -g esy@latest
-      - run:
-          name: 'esy install'
-          command: ~/.npm-global/bin/esy install
-      - run:
-          name: 'esy build'
-          command: |
-            ~/.npm-global/bin/esy build
+      - run: npm install -g esy@latest
+      - run: esy install
+      - run: esy build
 
       # Use both pre and post build caches so that we're more likely
       # to have dependencies cached. `esy build` is more likely to fail,
       # so this will make the push that fixes the build faster
       - save_cache:
           <<: *esy_post_build_cache_key
-          paths:
-            - ~/.esy
-
+          paths: [ ~/.esy ]
       - restore_cache:
           <<: *elm_format_cache_key
-      - run:
-          name: "Install elm-format"
-          command: ./install-elm-format
+      - run: ./install-elm-format
       - save_cache:
           <<: *elm_format_cache_key
           paths:
             - ~/.stack
             - ~/.elm-format
-
-
-      - run:
-          name: 'Test'
-          command: |
-            ~/.npm-global/bin/esy test
+      - run: esy test
