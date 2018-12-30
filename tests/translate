@@ -9,7 +9,7 @@ set -euo pipefail
 code=$?
 cat out
 cat stderr >&2
-if [ code = 0 ]; then
+if [ $code == 0 ]; then
   rm out
   rm stderr
 fi
