@@ -2,8 +2,16 @@
 
 set -euo pipefail
 
-curl -sSL https://get.haskellstack.org/ | sh
+if [[ -d ~/.stack ]]; then
+  echo "Stack already installed, skipping";
+else
+  curl -sSL https://get.haskellstack.org/ | sh
+fi
 stack setup --resolver lts-11.4
-git clone https://github.com/darklang/elm-format
-cd elm-format && git checkout elm-escape && stack install -j 4
+
+if [[ ! -d elm-format ]]; then
+  git clone https://github.com/darklang/elm-format
+fi
+
+cd elm-format && git checkout elm-escape && git pull && stack install -j 4
 
