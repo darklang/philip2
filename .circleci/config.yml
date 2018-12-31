@@ -33,5 +33,7 @@ jobs:
       - run: ./install-elm-format
       - save_cache:
           <<: *elm_format_cache_key
-          paths: [ ~/elm-format ]
+          paths:
+            - ~/elm-format
+            - ~/.stack
       - run: esy test
