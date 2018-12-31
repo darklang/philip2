@@ -2,8 +2,10 @@
 
 set -euo pipefail
 
-curl -sSL https://get.haskellstack.org/ | sh
-stack setup --resolver lts-11.4
+if [[ ! -d ~/.stack ]]; then
+  curl -sSL https://get.haskellstack.org/ | sh
+  stack setup --resolver lts-11.4
+fi
 
 if [[ ! -d elm-format ]]; then
   git clone https://github.com/darklang/elm-format
