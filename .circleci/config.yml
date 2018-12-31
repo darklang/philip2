@@ -1,12 +1,9 @@
 esy_cache_key: &esy_cache_key
-  key: esy-cache-{{ checksum "package.json" }}-{{ checksum "esy.lock.json" }}
-
-esy_post_build_cache_key: &esy_post_build_cache_key
-  key: esy-post-build-cache-{{ checksum "package.json" }}-{{ checksum "esy.lock.json" }}
+  key: v1-esy-cache-{{ checksum "package.json" }}-{{ checksum "esy.lock.json" }}
 
 # No file because we haven't got a file to key off at the point of download
 elm_format_cache_key: &elm_format_cache_key
-  key: v1-stack-cache
+  key: v2-elm-format-cache
 
 version: 2
 jobs:
@@ -21,26 +18,20 @@ jobs:
       - checkout
       - run: echo 'export PATH=/home/circleci/.npm-global/bin:$PATH' > ~/.bashrc
       - run: echo 'export PATH=/home/circleci/.local/bin:$PATH' >> ~/.bashrc
+
+      - run: npm install -g esy@latest
       - restore_cache:
           <<: *esy_cache_key
-      - restore_cache:
-          <<: *esy_post_build_cache_key
-      - run: npm install -g esy@latest
       - run: esy install
       - run: esy build
-
-      # Use both pre and post build caches so that we're more likely
-      # to have dependencies cached. `esy build` is more likely to fail,
-      # so this will make the push that fixes the build faster
       - save_cache:
-          <<: *esy_post_build_cache_key
+          <<: *esy_cache_key
           paths: [ ~/.esy ]
+
       - restore_cache:
           <<: *elm_format_cache_key
       - run: ./install-elm-format
       - save_cache:
           <<: *elm_format_cache_key
-          paths:
-            - ~/.stack
-            - ~/.elm-format
+          paths: [ ~/elm-format ]
       - run: esy test
