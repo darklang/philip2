@@ -2,7 +2,7 @@
 (alias
  (name runtest)
  (action (run ./test.exe))
- (deps test.exe (universe))
+ (deps test.exe (universe) (glob_files *.ml) (glob_files *.elm) (glob_files ./translate))
 )
 
 (executable
