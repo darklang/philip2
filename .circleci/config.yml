@@ -19,7 +19,7 @@ jobs:
       - run: echo 'export PATH=/home/circleci/.npm-global/bin:$PATH' > ~/.bashrc
       - run: echo 'export PATH=/home/circleci/.local/bin:$PATH' >> ~/.bashrc
 
-      - run: npm install -g esy@latest
+      - run: npm install -g esy@0.4.9
       - restore_cache:
           <<: *esy_cache_key
       - run: esy install
