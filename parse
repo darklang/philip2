@@ -2,8 +2,8 @@
 
 set -euo pipefail
 
-./build
+esy build
 
 ~/.local/bin/elm-format --json --elm-version 0.18 --stdin < /dev/stdin \
-  | ./_build/default/src/philip2.exe --parse
+  | _esy/default/build/default/src/philip2.exe --parse
 

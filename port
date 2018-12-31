@@ -5,7 +5,7 @@ set -euo pipefail
 srcdir=client
 targetdir=client2/src
 
-./build
+esy build
 
 files=$(find ${srcdir} -name "*.elm" | grep -v elm-stuff | sort)
 ignore="IntDict.elm|StrDict.elm|DontPort.elm|Window/Events.elm|DarkKeyboard.elm|tests|JSONUtils.elm|StrSet.elm|IntSet.elm"
@@ -34,7 +34,7 @@ for src in $files; do
 
 
   ~/.local/bin/elm-format --json --elm-version 0.18 --stdin < "${src}" \
-    | ./_build/default/translate.exe > "${target}" \
+    | _esy/default/build/default/src/translate.exe > "${target}" \
     && ocamlformat --inplace "${target}"
 
 done

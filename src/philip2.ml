@@ -8,6 +8,8 @@ let _ =
       then Translate.parse_elm In_channel.stdin
       else if Array.length Sys.argv > 1 && Sys.argv.(1) = "--debug"
       then Translate.debug_ocaml In_channel.stdin
+      else if Array.length Sys.argv > 1 && Sys.argv.(1) = "--file"
+      then Translate.translate_elm (In_channel.create Sys.argv.(2))
       else Translate.translate_elm In_channel.stdin
     in
     print_endline result;

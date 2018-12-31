@@ -1,8 +1,9 @@
 _build
-/.merlin
 /elm-format/
 /out
 /philip2.install
 /result.xml
-/src/.merlin
+.merlin
 /stderr
+node_modules
+/_esy/

@@ -1,13 +1,39 @@
+esy_cache_key: &esy_cache_key
+  key: v1-esy-cache-{{ checksum "package.json" }}-{{ checksum "esy.lock.json" }}
+
+# No file because we haven't got a file to key off at the point of download
+elm_format_cache_key: &elm_format_cache_key
+  key: v2-elm-format-cache
+
 version: 2
 jobs:
   build:
     docker:
-      - image: debian:stretch
+      - image: circleci/node:10
+    environment:
+      - TERM: dumb
+      - NPM_CONFIG_PREFIX: "~/.npm-global"
+      - BASH_ENV: ~/.bashrc
     steps:
       - checkout
-      - run:
-          name: Greeting
-          command: echo Hello, world.
-      - run:
-          name: Print the Current Time
-          command: date
+      - run: echo 'export PATH=/home/circleci/.npm-global/bin:$PATH' > ~/.bashrc
+      - run: echo 'export PATH=/home/circleci/.local/bin:$PATH' >> ~/.bashrc
+
+      - run: npm install -g esy@0.4.9
+      - restore_cache:
+          <<: *esy_cache_key
+      - run: esy install
+      - run: esy build
+      - save_cache:
+          <<: *esy_cache_key
+          paths: [ ~/.esy ]
+
+      - restore_cache:
+          <<: *elm_format_cache_key
+      - run: ./install-elm-format
+      - save_cache:
+          <<: *elm_format_cache_key
+          paths:
+            - ~/elm-format
+            - ~/.stack
+      - run: esy test

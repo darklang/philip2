@@ -15,9 +15,10 @@ let readfile f : string =
 
 let test filename =
   let fn _ =
-    let ocaml = readfile ("tests/" ^ filename ^ ".ml") in
+    let ocaml = readfile (filename ^ ".ml") in
+    let () = Unix.chmod "translate" 0o755 in
     let output =
-      Core_extended.Shell.run_full "./translate" ["tests/" ^ filename ^ ".elm"]
+      Core_extended.Shell.run_full "./translate" [filename ^ ".elm"]
     in
 
     AT.check

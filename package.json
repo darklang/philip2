@@ -1,0 +1,32 @@
+{
+  "name": "philip2",
+  "version": "0.0.1",
+  "description": "A compiler from Elm to OCaml",
+  "license": "MIT",
+  "esy": {
+    "build": "dune build src/philip2.exe"
+  },
+  "scripts": {
+    "test": "esy dune runtest"
+  },
+  "dependencies": {
+    "@opam/dune": "^1.4.0",
+    "@opam/core": "*",
+    "@opam/ocaml-migrate-parsetree": "^1.1.0",
+    "@opam/ppx_deriving": "^4.2.1",
+    "@opam/ppx_deriving_yojson": "*",
+    "@opam/re2": "*",
+    "@opam/yojson": "^1.4.1",
+    "@opam/ocamlformat": "*",
+    "@esy-ocaml/reason": "*",
+    "ocaml": "~4.6.0"
+  },
+  "devDependencies": {
+    "@opam/alcotest": "^0.8.1",
+    "@opam/core_extended": "*",
+    "@opam/junit": "*",
+    "@opam/junit_alcotest": "*",
+    "@opam/merlin": "^3.0.3",
+    "ocaml": "~4.6.0"
+  }
+}

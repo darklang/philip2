@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ ! -d ~/.stack ]]; then
+  curl -sSL https://get.haskellstack.org/ | sh
+  stack setup --resolver lts-11.4
+fi
+
+if [[ ! -d elm-format ]]; then
+  git clone https://github.com/darklang/elm-format
+fi
+
+cd elm-format && git checkout elm-escape && git pull && stack install -j 4
+

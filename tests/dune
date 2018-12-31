@@ -1,0 +1,19 @@
+
+(alias
+ (name runtest)
+ (action (run ./test.exe))
+ (deps test.exe (universe) (glob_files *.ml) (glob_files *.elm) (glob_files ./translate))
+)
+
+(executable
+  (name test)
+  (flags (-warn-error +A))
+  (libraries core_extended
+             alcotest
+             junit
+             junit_alcotest
+             translate
+             )
+  (preprocess (pps ppx_deriving.std ))
+  (modules test)
+)
