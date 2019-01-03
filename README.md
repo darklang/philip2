@@ -15,13 +15,13 @@ esy test
 
 # Useful scripts in the repo
 
-- debug: run and then type ocaml code to get pretty-printed ocaml AST. This is useful for figuring out how to generate the code you're trying to create an AST for. (run ./debug, then type your code, then press Ctrl-D)
+- debug: run and then type OCaml code to get pretty-printed OCaml AST. This is useful for figuring out how to generate the code you're trying to create an AST for. (run ./debug, then type your code, then press Ctrl-D)
 
 - parse: a script that parses an Elm file and dumps philip2's understanding of the parse tree.
 
-- translate: a script to translate a single file from elm to ocaml.
+- translate: a script to translate a single file from Elm to OCaml.
 
-- port: a script to help you port your project over to ocaml. Often, you will have to change your elm code to make the compiler work (for example, the compiler doesn't support the points-free style of function declaration). This script was helpful to me as I changed my code hundreds of times as I developed philip2.
+- port: a script to help you port your project over to OCaml. Often, you will have to change your Elm code to make the compiler work (for example, the compiler doesn't support the points-free style of function declaration). This script was helpful to me as I changed my code hundreds of times as I developed philip2.
 
 # Source files
 
