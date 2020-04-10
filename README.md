@@ -66,11 +66,12 @@ These allow you to use regex to modify module, function, and type names, as well
 
 - [bs-json](https://github.com/glennsl/bs-json) appears to be much nicer to use for decoders than Tea.Json.
 
-- You have to decide which standard libraries to use. We ended up porting lots of Elm code directly (eg using the compiler to translate it) rather than calling OCaml libraries (see https://reasonml.chat/t/advice-on-standard-library-to-use/1165)
+- You have to decide which standard libraries to use. We ended up porting lots of Elm code directly (eg using the compiler to translate it) rather than calling OCaml libraries (see https://reasonml.chat/t/advice-on-standard-library-to-use/1165) (update: you can now use [Tablecloth](https://github.com/darklang/tablecloth) for this)
 
 - Elm's Result takes parameters in a different order than Tea.Result and Belt.Result.
 
-- Check out the [useful_elm](/useful_elm) and [useful_ocaml](/useful_ocaml) directories.
+- Check out the [useful_elm](/useful_elm) and [useful_ocaml](/useful_ocaml) directories (update: you can now use [Tablecloth](https://github.com/darklang/tablecloth) instead)
+.
 
 
 
