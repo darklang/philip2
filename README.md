@@ -32,7 +32,7 @@ esy test
 # How to port your project
 
 - Create an empty bucklescript project using bucklescript-tea. A pretty good tutorial on this is: https://quernd.github.io/tutorials/tea-chess/index.html
-- Copy [Porting.ml](https://github.com/darklang/philip2/blob/master/useful_ocaml/Porting.ml) into your repo.
+- Copy [Porting.ml](https://github.com/darklang/philip2/blob/master/useful_ocaml/Porting.ml) into your repo. (update: you should be able to use [Tablecloth](https://github.com/darklang/tablecloth) instead now
 - Tweak Porting.ml until it you get it to convert something to Elm.
 - Run bsb with the watcher to see errors in the generated files.
 - Modify the source Elm until everything converts to OCaml cleanly. See tactics below. By doing this, you'll be able to make changes and validate that your old code continues to work, eg by running tests and unit tests.
